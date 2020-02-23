@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SmurfGuest from './smurfGuest'
 
-const SmurfPartyList = (props) => {
+const SmurfPartyList = ({smurfData}) => {
   return(
-    <>
-      {props.smurfData.map(smurf => (
-        <SmurfGuest smurfName={smurf.name} />
+    <div>
+      {smurfData.map((smurf, index) => (
+        <SmurfGuest smurfName={smurf.name} key={index} />
       ))}
-    </>
+    </div>
+    
   )
 }
 
