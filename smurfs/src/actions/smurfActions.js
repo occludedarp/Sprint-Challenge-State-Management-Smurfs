@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const GET_SMURFS = 'GET_SMURFS'
-export const MAKE_SMURFS = 'MAKE_SMURFS'
+export const MAKE_SMURF = 'MAKE_SMURF'
 
 export const getSmurfs = () => dispatch => {
   axios.get('http://localhost:3333/smurfs')
@@ -12,6 +12,13 @@ export const getSmurfs = () => dispatch => {
 }
 
 export const makeSmurf = (smurf) => dispatch => {
-  dispatch({type: MAKE_SMURFS, payload: smurf})
+  axios.post('http://localhost:3333/smurfs', smurf)
+    .then(res => {
+      return dispatch({type: MAKE_SMURF, payload: res.data})
+    })
+    .catch(err => {
+      console.log('sorry, we couldn\'t make the smurf', err)
+    })
+  
 }
 
