@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { makeSmurf } from '../actions/smurfActions'
+import { makeSmurf, getSmurfs } from '../actions/smurfActions'
 
-const SmurfForm = ({makeSmurf}) => {
+const SmurfForm = ({makeSmurf, getSmurfs}) => {
 
   const [smurf, setSmurf] = useState({name: 'johnny', age: 230, height: " ", id: 0})
 
@@ -18,13 +18,14 @@ const SmurfForm = ({makeSmurf}) => {
 
   return(
     <div style={{"display": "flex", "justifyContent":"center"}}>
+      <button onClick={() => {getSmurfs()}}>fetch smurfs</button>
 
       <form onSubmit={(e) => {e.preventDefault(); handleSmurf(smurf)}} style={{"display":"flex", "flexDirection":"column", "width":"350px"}}>
         <input onChange={handleChange} name="name" value={smurf.name} style={{"margin":"3% auto"}}/>
         <input onChange={handleChange} name="age" value={smurf.age} style={{"margin":"3% auto"}}/>
         <input onChange={handleChange} name="height" value={smurf.height} style={{"margin":"3% auto"}}/>
 
-        <button type="submit" style={{"margin":"3% auto"}}>show me the smurfs </button>
+        <button type="submit" style={{"margin":"3% auto"}}>add a smurf</button>
       </form>
     </div>
   )
@@ -38,5 +39,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {makeSmurf}
+  {makeSmurf, getSmurfs}
 )(SmurfForm)

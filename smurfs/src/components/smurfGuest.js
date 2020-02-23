@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getSmurfs } from '../actions/smurfActions'
-
 
 const SmurfGuest = (props) => {
   return(
     <div>
-      {props.smurfName}
+      <h3>Name: {props.smurfName}</h3>
+      <h3>Age: {props.smurfAge}</h3>
+      <h3>Height: {props.smurfHeight}</h3>
     </div>
   )
 }
@@ -19,5 +19,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {getSmurfs}
+  {}
 )(SmurfGuest)
