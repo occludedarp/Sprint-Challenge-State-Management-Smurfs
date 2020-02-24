@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import SmurfGuest from './smurfGuest'
-import {getSmurfs} from '../actions/smurfActions'
+import { getSmurfs } from '../actions/smurfActions';
 
-const SmurfPartyList = ({smurfData}) => {
+const SmurfPartyList = ({smurfData, getSmurfs}) => {
 
-  getSmurfs();
+  useEffect(() => {
+    return getSmurfs()
+  }, [])
 
   return(
     <div>
@@ -24,5 +26,6 @@ const mapStateToProps = state => {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  {getSmurfs}
 )(SmurfPartyList)
